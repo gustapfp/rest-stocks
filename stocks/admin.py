@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Stock, RealEstateInvestmentTrust
+from .models import Stock, RealEstateInvestmentTrust, Broker
 
 # Register your models here.
 
@@ -20,3 +20,10 @@ class ListREIT(admin.ModelAdmin):
     list_filter = ("sector", )
 
 admin.site.register(RealEstateInvestmentTrust, ListREIT)
+
+class ListBroker(admin.ModelAdmin):
+    list_display = ('stock', 'reit', 'listed')
+    list_display_links = ("stock" , "reit" )
+    list_editable = ("listed",)
+
+admin.site.register(Broker, ListBroker)

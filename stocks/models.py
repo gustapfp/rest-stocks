@@ -28,3 +28,11 @@ class RealEstateInvestmentTrust(models.Model):
      ticket = models.CharField(max_length=10, null=False, blank=False)
      price = models.FloatField(null=False, blank=False)
      sector = models.CharField(max_length=2, choices=SECTOR_CHOICES, default='')
+
+     def __str__(self) -> str:
+          return f"{self.name} - {self.ticket}"
+
+class Broker(models.Model):
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    reit = models.ForeignKey(RealEstateInvestmentTrust, on_delete=models.CASCADE)
+    listed = models.BooleanField(default=True)
